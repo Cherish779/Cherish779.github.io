@@ -561,7 +561,9 @@
 
 <p>只有通过以上步骤后，才能将我们所需的博客的环境文件初始化到我们创建的 Blog 文件夹中。</p>
 </li>
-<li><p>窗口不用关，回到创建的 Blog 文件中如果上面的步骤没有出错的话，此时就会自动生成了很多文件，然后我们找到  _config.yml       文件,打开进入后，将最后两行删除，换成：</p>
+<li><p>窗口不用关，回到创建的 Blog 文件中如果上面的步骤没有出错的话，此时就会自动生成了很多文件，然后我们找到  _config.yml       文件,打开进入后，将最后两行删除：</p>
+<p><img src="/images/1.png"></p>
+<p>换成：</p>
 <pre class="line-numbers language-none"><code class="language-none">deploy:
     type: git
     repository: https:&#x2F;&#x2F;github.com&#x2F;Cherish779&#x2F;Cherish779.github.io.git  #这个是自己github上的仓库地址
@@ -603,7 +605,10 @@
 <ul>
 <li><h2 id="第八步"><a href="#第八步" class="headerlink" title="第八步"></a>第八步</h2></li>
 </ul>
-<h3 id="——-最关键的是与远程Github仓库连接："><a href="#——-最关键的是与远程Github仓库连接：" class="headerlink" title="—— 最关键的是与远程Github仓库连接："></a>—— 最关键的是与远程Github仓库连接：</h3><p>​                    1. 我们在自己创建好的 Blog 文件夹中右击选择  git bash here  进入 git 命令窗口，首先来测试一下 SSH 是否绑定成功：</p>
+<h3 id="——-最关键的是与远程Github仓库连接："><a href="#——-最关键的是与远程Github仓库连接：" class="headerlink" title="—— 最关键的是与远程Github仓库连接："></a>—— 最关键的是与远程Github仓库连接：</h3><p>​                    1. 我们在自己创建好的 Blog 文件夹中右击选择  git bash here  进入 git 命令窗口：</p>
+<p><img src="/images/2.png"></p>
+<pre><code>                 首先来测试一下 SSH 是否绑定成功：
+</code></pre>
 <pre class="line-numbers language-none"><code class="language-none">ssh -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​            回车            </p>
@@ -633,6 +638,10 @@
 
 <pre class="line-numbers language-none"><code class="language-none">hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+
+
+<p><img src="/images/3.png"></p>
+<p><img src="/images/4.png"></p>
 <ul>
 <li><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2></li>
 </ul>
