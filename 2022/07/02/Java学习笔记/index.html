@@ -465,14 +465,14 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    41.1k
+                    41k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    149 分
+                    148 分
                 </div>
                 
 
@@ -3911,132 +3911,136 @@ for(数据类型 变量名 : 数组或集合)&#123;
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"default method ..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test01</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Flyable</span><span class="token punctuation">.</span>CLASS_ROOM<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Flyable</span><span class="token punctuation">.</span><span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 父类引用指向子类对象（多态）</span>
+        <span class="token comment">// bird对象的编译时类型为“Flyable”接口，bird对象的运行时类型为“Bird”类。</span>
+        <span class="token class-name">Flyable</span> bird <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bird</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 编译时：检查“编译时类型”，也就是检查Flyable接口中是否有showFly()方法。</span>
+        <span class="token comment">// 运行时：检查“运行时类型”，也就是调用了Bird类中的showFly()方法</span>
+        bird<span class="token punctuation">.</span><span class="token function">showFly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        bird<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<hr>
+<h4 id="抽象类和接口的总结"><a href="#抽象类和接口的总结" class="headerlink" title="抽象类和接口的总结"></a>抽象类和接口的总结</h4><ol>
+<li><p>普通类、抽象类和接口的特点</p>
+<ul>
+<li><strong>接口的抽象程度最高，抽象类的抽象程度次之，普通类的抽象程度最低。</strong></li>
+</ul>
 </li>
-<li><pre><code class="java">public class Test01 &#123;
-    public static void main(String[] args) &#123;
-        System.out.println(Flyable.CLASS_ROOM);
-        Flyable.staticMethod();
-
-        // 父类引用指向子类对象（多态）
-        // bird对象的编译时类型为“Flyable”接口，bird对象的运行时类型为“Bird”类。
-        Flyable bird = new Bird();
-        // 编译时：检查“编译时类型”，也就是检查Flyable接口中是否有showFly()方法。
-        // 运行时：检查“运行时类型”，也就是调用了Bird类中的showFly()方法
-        bird.showFly();
-
-        bird.show();
-    &#125;
-&#125;
-<pre class="line-numbers language-none"><code class="language-none">
----
-
-#### 抽象类和接口的总结
-
-1. 普通类、抽象类和接口的特点
-
-   - **接口的抽象程度最高，抽象类的抽象程度次之，普通类的抽象程度最低。**
-
-2. 抽象类和接口的对比
-
-   - 相同点
-
-     1. 都是向上提取的结果，因此都不能被实例化。
-     2. 都是向上提取的结果，因此都包含了抽象方法。
-
-   - 不同点
-
-     1. 接口与接口之间属于“extends”的关系，并且属于“多继承”。
-
-        抽象类与抽象类之间属于“extends”的关系，并且属于“单继承”。
-
-     2. 实现类与接口之间属于“implements”的关系，并且属于“多实现”。
-
-        实现类与抽象类之间属于“extends”的关系，并且属于“单继承”。
-
-     3. 接口描述的是“is like a”的关系，也就是描述“不同体系”的相同行为。
-
-        抽象类描述的是“is a”的关系，也就是描述“相同体系”的基本行为。
-
-     4. 接口中只有“全局静态常量”和“全局抽象方法”，JDK1.8之后新增了“全局静态方法”和“default修饰的全局默认方法”。
-
-        抽象类就是一个特殊类，抽象类对比普通类新增了任意多个抽象方法。
-
----
-
-#### 单继承和多继承的概述？
-
-1. 单继承：java、C#等等
-   - 解释：一个子类只能有一个直接父类，类似于一个儿子只有一个亲爹。
-   - 优势：简单、安全。
-   -  劣势：只能继承一个父类的内容，则子类功能不够强大。
-2. 多继承：C++
-   - 解释：一个子类可以有多个直接父类，类似于一个儿子可以有多个亲爹。
-   - 优势：可以继承多个父类的内容，则子类功能非常强大。
-   - 劣势：复杂、不安全。
-
----
-
-#### 接口的多实现的概述
-
-1.  需求：要求子类不但简单又安全，同时还要求子类功能非常强大，如何实现？
-   - 不但要集合单继承和多继承的优势，并且还要摒弃单继承和多继承的劣势。
-   -  **实现：先让子类继承于某个父类，然后再让该子类实现多个接口，实现多个接口的操作就称之为“接口的多实现”。**
-   - 通过以上的实现方式，我们就模拟了C++的多继承操作，并且还摒弃了C++多继承的劣势。
-
----
-
-#### 内部类的概述
-
-1. 什么是内部类
-
-   - **在OutClass类的内部，我们再定义InnerClass类就是内部类。**
-
-2. 内部类的定义位置？
-
-   - 位置一：在类中，代码块或方法体的内部。
-   - 位置二：在类中，代码块和方法体的外部。
-
-3. 什么时候使用内部类？
-
-   - 描述一个事物的时候，我们发现该事物内部还有别的事物，此时就可以使用内部类来实现。
-   - 例如：描述小汽车的时候，我们发现小汽车内部还有发动机，此时的发动机就是一个内部类。
-
-4. 内部类的分类？
-
-   -  **成员内部类（掌握）**、**静态内部类（掌握）**、局部内部类（了解）和**匿名内部类（重点）**。
-
-5. 内部类编译的特点？
-
-   - 在OuterClass类的内部，我们再定义InnerClass类，此时我们对程序进行编译，**则就会获得两个字节码文件**
-
-      --&gt; **OuterClass.class**             外部类的字节码文件，也就是OuterClass类的字节码文件
-
-      --&gt; **OuterClass$InnerClass.class**  内部类的字节码文件，也就是InnerClass类的字节码文件
-
-6. 操作内部类的特点？
-
-   -  想要操作内部类，则必须通过外部类来实现，也就是内部类是依附于外部类的。
-
----
-
-#### 成员内部类（掌握）
-
-明确：学习成员内部类的时候，我们建议**把“成员内部类”当成“成员变量”来理解。**
-
-1. 定义位置
-
-   - 在类中，代码块和方法体之外。
-
-2. 定义语法
-
-   - &#96;&#96;&#96;java
-     [修饰符] class 外部类&#123;
-     	&#x2F;&#x2F;成员内部类
-     	[修饰符] class 内部类&#123;
-     		&#x2F;&#x2F;内部类中的代码
-     	&#125;
-     &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</code></pre>
+<li><p>抽象类和接口的对比</p>
+<ul>
+<li><p>相同点</p>
+<ol>
+<li>都是向上提取的结果，因此都不能被实例化。</li>
+<li>都是向上提取的结果，因此都包含了抽象方法。</li>
+</ol>
+</li>
+<li><p>不同点</p>
+<ol>
+<li><p>接口与接口之间属于“extends”的关系，并且属于“多继承”。</p>
+<p>抽象类与抽象类之间属于“extends”的关系，并且属于“单继承”。</p>
+</li>
+<li><p>实现类与接口之间属于“implements”的关系，并且属于“多实现”。</p>
+<p>实现类与抽象类之间属于“extends”的关系，并且属于“单继承”。</p>
+</li>
+<li><p>接口描述的是“is like a”的关系，也就是描述“不同体系”的相同行为。</p>
+<p>抽象类描述的是“is a”的关系，也就是描述“相同体系”的基本行为。</p>
+</li>
+<li><p>接口中只有“全局静态常量”和“全局抽象方法”，JDK1.8之后新增了“全局静态方法”和“default修饰的全局默认方法”。</p>
+<p>抽象类就是一个特殊类，抽象类对比普通类新增了任意多个抽象方法。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="单继承和多继承的概述？"><a href="#单继承和多继承的概述？" class="headerlink" title="单继承和多继承的概述？"></a>单继承和多继承的概述？</h4><ol>
+<li>单继承：java、C#等等<ul>
+<li>解释：一个子类只能有一个直接父类，类似于一个儿子只有一个亲爹。</li>
+<li>优势：简单、安全。</li>
+<li>劣势：只能继承一个父类的内容，则子类功能不够强大。</li>
+</ul>
+</li>
+<li>多继承：C++<ul>
+<li>解释：一个子类可以有多个直接父类，类似于一个儿子可以有多个亲爹。</li>
+<li>优势：可以继承多个父类的内容，则子类功能非常强大。</li>
+<li>劣势：复杂、不安全。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="接口的多实现的概述"><a href="#接口的多实现的概述" class="headerlink" title="接口的多实现的概述"></a>接口的多实现的概述</h4><ol>
+<li>需求：要求子类不但简单又安全，同时还要求子类功能非常强大，如何实现？</li>
+</ol>
+<ul>
+<li>不但要集合单继承和多继承的优势，并且还要摒弃单继承和多继承的劣势。</li>
+<li><strong>实现：先让子类继承于某个父类，然后再让该子类实现多个接口，实现多个接口的操作就称之为“接口的多实现”。</strong></li>
+<li>通过以上的实现方式，我们就模拟了C++的多继承操作，并且还摒弃了C++多继承的劣势。</li>
+</ul>
+<hr>
+<h4 id="内部类的概述"><a href="#内部类的概述" class="headerlink" title="内部类的概述"></a>内部类的概述</h4><ol>
+<li><p>什么是内部类</p>
+<ul>
+<li><strong>在OutClass类的内部，我们再定义InnerClass类就是内部类。</strong></li>
+</ul>
+</li>
+<li><p>内部类的定义位置？</p>
+<ul>
+<li>位置一：在类中，代码块或方法体的内部。</li>
+<li>位置二：在类中，代码块和方法体的外部。</li>
+</ul>
+</li>
+<li><p>什么时候使用内部类？</p>
+<ul>
+<li>描述一个事物的时候，我们发现该事物内部还有别的事物，此时就可以使用内部类来实现。</li>
+<li>例如：描述小汽车的时候，我们发现小汽车内部还有发动机，此时的发动机就是一个内部类。</li>
+</ul>
+</li>
+<li><p>内部类的分类？</p>
+<ul>
+<li><strong>成员内部类（掌握）</strong>、<strong>静态内部类（掌握）</strong>、局部内部类（了解）和<strong>匿名内部类（重点）</strong>。</li>
+</ul>
+</li>
+<li><p>内部类编译的特点？</p>
+<ul>
+<li><p>在OuterClass类的内部，我们再定义InnerClass类，此时我们对程序进行编译，<strong>则就会获得两个字节码文件</strong></p>
+<p> –&gt; <strong>OuterClass.class</strong>             外部类的字节码文件，也就是OuterClass类的字节码文件</p>
+<p> –&gt; <strong>OuterClass$InnerClass.class</strong>  内部类的字节码文件，也就是InnerClass类的字节码文件</p>
+</li>
+</ul>
+</li>
+<li><p>操作内部类的特点？</p>
+<ul>
+<li>想要操作内部类，则必须通过外部类来实现，也就是内部类是依附于外部类的。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="成员内部类（掌握）"><a href="#成员内部类（掌握）" class="headerlink" title="成员内部类（掌握）"></a>成员内部类（掌握）</h4><p>明确：学习成员内部类的时候，我们建议<strong>把“成员内部类”当成“成员变量”来理解。</strong></p>
+<ol>
+<li><p>定义位置</p>
+<ul>
+<li>在类中，代码块和方法体之外。</li>
+</ul>
+</li>
+<li><p>定义语法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">class</span> 外部类<span class="token punctuation">&#123;</span>
+	<span class="token comment">//成员内部类</span>
+	<span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">class</span> 内部类<span class="token punctuation">&#123;</span>
+		<span class="token comment">//内部类中的代码</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>注意事项</p>
 <ul>
@@ -4051,18 +4055,17 @@ for(数据类型 变量名 : 数组或集合)&#123;
 <p> 代码执行到成员内部类中，则意味着外部类对象肯定已经创建完毕，因此就能操作外部类的成员内容和静态内容。</p>
 </li>
 <li><p>e)在成员内部类中，当局部变量、成员内部类的成员变量和外部类的成员变量同名的时候，则如何区分呢？</p>
-<ul>
-<li><p>&#96;&#96;&#96;java<br>System.out.println{“局部变量：” + name}<br>System.out.println(“内部类的成员变量：” + this.name);<br>System.out.println(“外部类的成员变量：” + OuterClass.this.name);</p>
-<pre class="line-numbers language-none"><code class="language-none">
-4. 成员内部类的实例化方式？
-
-   - 情况一：**在外部类的内部，我们实例化成员内部类对象（掌握）**
-
-     --&gt; 语法：
-
-     &#96;&#96;&#96;java
-     内部类 对象 &#x3D; new 内部类(实参列表);  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span>println<span class="token punctuation">&#123;</span><span class="token string">"局部变量："</span> <span class="token operator">+</span> name<span class="token punctuation">&#125;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"内部类的成员变量："</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"外部类的成员变量："</span> <span class="token operator">+</span> <span class="token class-name">OuterClass</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ul>
+</li>
+<li><p>成员内部类的实例化方式？</p>
+<ul>
+<li><p>情况一：<strong>在外部类的内部，我们实例化成员内部类对象（掌握）</strong></p>
+<p>–&gt; 语法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">内部类 对象 <span class="token operator">=</span> <span class="token keyword">new</span> 内部类<span class="token punctuation">(</span>实参列表<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>情况二：<strong>在外部类的外部，我们实例化成员内部类对象。（了解）</strong></p>
 <p>–&gt; 语法：</p>
@@ -4122,42 +4125,39 @@ for(数据类型 变量名 : 数组或集合)&#123;
 </ul>
 </li>
 <li><p>定义语法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">class</span> 外部类<span class="token punctuation">&#123;</span>
+	<span class="token comment">//静态内部类</span>
+	<span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">static</span> <span class="token keyword">class</span> 内部类<span class="token punctuation">&#123;</span>
+		<span class="token comment">//书写静态内部类的代码</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>注意事项</p>
 <ul>
-<li><pre><code class="java">[修饰符] class 外部类&#123;
-    //静态内部类
-    [修饰符] static class 内部类&#123;
-        //书写静态内部类的代码
-    &#125;
-&#125;
-<pre class="line-numbers language-none"><code class="language-none">
-3. 注意事项
-
-   -  a)定义静态内部类的时候，我们可以使用private、protected、public、final和abstract来修饰，并且还**必须使用static来修饰**
-
-   - b)在静态内部类中，我们不但能定义成员变量、成员方法、构造方法和构造代码块，并且还**能定义静态变量、静态方法和静态代码块。**
-
-   - c)**想要操作静态内部类，则直接通过外部类名来操作即可**，因为静态内部类是依附于外部类的，此处联想“静态变量”来理解即可。
-
-     **在外部类的成员位置，我们可以直接操作当前类中的静态内部类；在外部类的静态位置，我们可以直接操作当前类中的静态内部类。**
-
-   -  d)**在静态内部类中，我们可以直接操作外部类的静态变量和静态方法，但是不能直接操作外部类的成员变量和成员方法。**
-
-     静态内部类是依附于外部类的，也就是**只要外部类加载完毕，则就能操作当前类中静态内部类。**
-
-   -  e)想要操作静态内部类中的静态变量和静态方法，则我们还可以通过以下方式来直接操作：
-
-     1. **操作静态变量**：外部类.静态内部类.静态变量名；
-     2.  **操作静态方法**：外部类.静态内部类.静态方法名(实参列表);
-
-4. **静态内部类的实例化方式？**
-
-   - **情况一：在外部类的内部，我们实例化静态内部类对象（掌握）**
-
-      --&gt; 语法：
-
-     &#96;&#96;&#96;java
-     内部类 对象 &#x3D; new 内部类(实现列表);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</code></pre>
+<li><p>a)定义静态内部类的时候，我们可以使用private、protected、public、final和abstract来修饰，并且还<strong>必须使用static来修饰</strong></p>
+</li>
+<li><p>b)在静态内部类中，我们不但能定义成员变量、成员方法、构造方法和构造代码块，并且还<strong>能定义静态变量、静态方法和静态代码块。</strong></p>
+</li>
+<li><p>c)<strong>想要操作静态内部类，则直接通过外部类名来操作即可</strong>，因为静态内部类是依附于外部类的，此处联想“静态变量”来理解即可。</p>
+<p><strong>在外部类的成员位置，我们可以直接操作当前类中的静态内部类；在外部类的静态位置，我们可以直接操作当前类中的静态内部类。</strong></p>
+</li>
+<li><p>d)<strong>在静态内部类中，我们可以直接操作外部类的静态变量和静态方法，但是不能直接操作外部类的成员变量和成员方法。</strong></p>
+</li>
+</ul>
+<p>  静态内部类是依附于外部类的，也就是<strong>只要外部类加载完毕，则就能操作当前类中静态内部类。</strong></p>
+<ul>
+<li>e)想要操作静态内部类中的静态变量和静态方法，则我们还可以通过以下方式来直接操作：</li>
+</ul>
+<ol>
+<li><strong>操作静态变量</strong>：外部类.静态内部类.静态变量名；</li>
+<li><strong>操作静态方法</strong>：外部类.静态内部类.静态方法名(实参列表);</li>
+</ol>
+</li>
+<li><p><strong>静态内部类的实例化方式？</strong></p>
+<ul>
+<li><p><strong>情况一：在外部类的内部，我们实例化静态内部类对象（掌握）</strong></p>
+<p> –&gt; 语法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">内部类 对象 <span class="token operator">=</span> <span class="token keyword">new</span> 内部类<span class="token punctuation">(</span>实现列表<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>情况二：在外部类的外部，我们实例化静态内部类对象（了解）</p>
 <p> –&gt; 语法：</p>
@@ -4228,82 +4228,76 @@ for(数据类型 变量名 : 数组或集合)&#123;
 </ul>
 </li>
 <li><p>定义语法</p>
-<ul>
-<li><pre><code class="java">[修饰符] class 外部类&#123;
-    &#123;
-        //位置一：定义在代码块中
-        class内部类&#123;
-            //书写局部内部类中的代码
-        &#125;
-    &#125;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">class</span> 外部类<span class="token punctuation">&#123;</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token comment">//位置一：定义在代码块中</span>
+		<span class="token keyword">class</span>内部类<span class="token punctuation">&#123;</span>
+			<span class="token comment">//书写局部内部类中的代码</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
     
-    [修饰符] 返回值类型 方法名(形参列表)&#123;
-        //位置二：定义在方法体中
-        class 内部类&#123;
-            //书写局部内部类中的代码
-        &#125;
-    &#125;
-&#125;
-<pre class="line-numbers language-none"><code class="language-none">
-3. 注意事项
+    <span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> 返回值类型 方法名<span class="token punctuation">(</span>形参列表<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">//位置二：定义在方法体中</span>
+        <span class="token keyword">class</span> 内部类<span class="token punctuation">&#123;</span>
+            <span class="token comment">//书写局部内部类中的代码</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li><p>a)定义局部内部类的时候，我们不能使用private、protected、public和static修饰，但是<strong>可以使用final和abstract来修饰。</strong></p>
+</li>
+<li><p>b)在局部内部类中，我们<strong>只能定义成员变量、成员方法、构造方法和构造代码块</strong>，但是<strong>不能定义静态变量、静态方法和静态代码块。</strong></p>
+</li>
+<li><p>c)局部内部类只能在“当前作用域”中使用，不能在代码块或方法体之外使用，此处我们可以联想局部变量的“生命周期”来理解。</p>
+</li>
+<li><p>d)<strong>在局部内部类中，我们“肯定”能操作外部类的静态变量和静态方法，但是“未必”能操作外部类的成员变量和成员方法。</strong></p>
+<p> 在局部内部类中，是否能操作外部类的成员变量和成员方法，<strong>关键是看该局部内部类在哪个位置中定义的。</strong></p>
+</li>
+<li><p>e)<strong>在局部内部类中，想要操作外部的局部变量，则该局部变量必须采用final来修饰，从而保证数据的安全性。</strong></p>
+<p> <strong>在局部内部类中，如果操作了外部的局部变量，则该局部变量的生命周期就延长了，也就是该局部变量的生命周期和局部内部类对象的生命周期保持一致了。</strong></p>
+</li>
+<li><p><strong>补充：在JDK1.8之后，如果在局部内部类中使用了外部的局部变量，则该局部变量默认就会采用final来修饰，从而保证数据的安全性。</strong></p>
+</li>
+<li><p>eg1：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 外部类</span>
+<span class="token keyword">class</span> <span class="token class-name">OuterClass</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token class-name">String</span> classRoom<span class="token punctuation">;</span>
 
-   -  a)定义局部内部类的时候，我们不能使用private、protected、public和static修饰，但是**可以使用final和abstract来修饰。**
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 外部的局部变量</span>
+        <span class="token comment">/*final*/</span> <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment">// num出生</span>
+        <span class="token comment">// 局部内部类</span>
+        <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">InnerClass</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+            <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+            <span class="token keyword">public</span> <span class="token class-name">InnerClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// num = 20; --> 编译错误</span>
+                <span class="token comment">/*System.out.println(age); // 未必
+                System.out.println(classRoom); // 没问题*/</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"show ..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 实例化InnerClass对象</span>
+        <span class="token class-name">InnerClass</span> innerClass <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InnerClass</span><span class="token punctuation">(</span><span class="token string">"小花"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 调用show()方法</span>
+        innerClass<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token comment">// 如果在局部内部类中，我们没有使用外部的局部变量num，则该变量num就在此处死亡</span>
+      <span class="token comment">// 如果在局部内部类中，我们使用了外部的局部变量num，则该num就和局部内部类对象的生命周期保持一致啦。</span>
+<span class="token punctuation">&#125;</span>
 
-   - b)在局部内部类中，我们**只能定义成员变量、成员方法、构造方法和构造代码块**，但是**不能定义静态变量、静态方法和静态代码块。**
-
-   - c)局部内部类只能在“当前作用域”中使用，不能在代码块或方法体之外使用，此处我们可以联想局部变量的“生命周期”来理解。
-
-   - d)**在局部内部类中，我们“肯定”能操作外部类的静态变量和静态方法，但是“未必”能操作外部类的成员变量和成员方法。**
-
-      在局部内部类中，是否能操作外部类的成员变量和成员方法，**关键是看该局部内部类在哪个位置中定义的。**
-
-   - e)**在局部内部类中，想要操作外部的局部变量，则该局部变量必须采用final来修饰，从而保证数据的安全性。**
-
-      **在局部内部类中，如果操作了外部的局部变量，则该局部变量的生命周期就延长了，也就是该局部变量的生命周期和局部内部类对象的生命周期保持一致了。**
-
-   - **补充：在JDK1.8之后，如果在局部内部类中使用了外部的局部变量，则该局部变量默认就会采用final来修饰，从而保证数据的安全性。**
-
-   - eg1：
-
-     &#96;&#96;&#96;java
-     &#x2F;&#x2F; 外部类
-     class OuterClass &#123;
-         int age;
-         static String classRoom;
-     
-         public static void method() &#123;
-             &#x2F;&#x2F; 外部的局部变量
-             &#x2F;*final*&#x2F; int num &#x3D; 10; &#x2F;&#x2F; num出生
-             &#x2F;&#x2F; 局部内部类
-             final class InnerClass &#123;
-                 String name;
-                 &#123;&#125;
-                 public InnerClass(String name) &#123;
-                     this.name &#x3D; name;
-                 &#125;
-                 public void show() &#123;
-                     System.out.println(num);
-                     &#x2F;&#x2F; num &#x3D; 20; --&gt; 编译错误
-                     &#x2F;*System.out.println(age); &#x2F;&#x2F; 未必
-                     System.out.println(classRoom); &#x2F;&#x2F; 没问题*&#x2F;
-                     System.out.println(&quot;show ...&quot;);
-                 &#125;
-             &#125;
-             &#x2F;&#x2F; 实例化InnerClass对象
-             InnerClass innerClass &#x3D; new InnerClass(&quot;小花&quot;);
-             &#x2F;&#x2F; 调用show()方法
-             innerClass.show();
-         &#125; &#x2F;&#x2F; 如果在局部内部类中，我们没有使用外部的局部变量num，则该变量num就在此处死亡
-           &#x2F;&#x2F; 如果在局部内部类中，我们使用了外部的局部变量num，则该num就和局部内部类对象的生命周期保持一致啦。
-     &#125;
-     
-     public class Test01 &#123;
-         public static void main(String[] args) &#123;
-             OuterClass.method();
-         &#125;
-     &#125;
-     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</code></pre>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test01</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">OuterClass</span><span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>eg2：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>p5<span class="token punctuation">.</span>innerclass</span><span class="token punctuation">;</span>
@@ -4508,28 +4502,24 @@ for(数据类型 变量名 : 数组或集合)&#123;
 </ul>
 </li>
 <li><p>匿名内部类的语法</p>
-<ul>
-<li><pre><code class="java">[修饰符] class 外部类 &#123;
-       &#123;
-            // 位置一：创建一个继承于某个父类的局部内部类对象，该局部内部类没有名字。
-            // 第一步：定义了一个继承于某个父类的局部内部类，并且该局部内部类没有名字。
-            // 第二步：创建该局部内部类对象，也就是常见了一个没有名字的局部内部类对象。
-            new 父类名() &#123;
-               // 书写匿名内部类中的代码
-            &#125;;
-       &#125;
-        [修饰符] 返回值类型 方法名(形参列表) &#123;
-            // 位置二：创建一个实现于某个接口的局部内部类对象，该局部内部类没有名字。
-           // 第一步：定义一个实现于某个接口的局部内部类，并且该局部内部类没有名字
-           // 第二步：创建该局部内部类对象，也就是常见了一个没有名字的局部内部类对象
-            new 接口名() &#123;
-                // 书写匿名内部类中的代码
-            &#125;;
-        &#125;
-    &#125;
-</code></pre>
-</li>
-</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">class</span> 外部类 <span class="token punctuation">&#123;</span>
+       <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 位置一：创建一个继承于某个父类的局部内部类对象，该局部内部类没有名字。</span>
+            <span class="token comment">// 第一步：定义了一个继承于某个父类的局部内部类，并且该局部内部类没有名字。</span>
+            <span class="token comment">// 第二步：创建该局部内部类对象，也就是常见了一个没有名字的局部内部类对象。</span>
+            <span class="token keyword">new</span> 父类名<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+               <span class="token comment">// 书写匿名内部类中的代码</span>
+     	   <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+       <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> 返回值类型 方法名<span class="token punctuation">(</span>形参列表<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 位置二：创建一个实现于某个接口的局部内部类对象，该局部内部类没有名字。</span>
+           <span class="token comment">// 第一步：定义一个实现于某个接口的局部内部类，并且该局部内部类没有名字</span>
+           <span class="token comment">// 第二步：创建该局部内部类对象，也就是常见了一个没有名字的局部内部类对象</span>
+            <span class="token keyword">new</span> 接口名<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 书写匿名内部类中的代码</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>匿名内部类的注意点</p>
 <ul>
@@ -5012,7 +5002,7 @@ for(数据类型 变量名 : 数组或集合)&#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.2k</span>
+                        class="white-color">47.1k</span>
             
             
             
