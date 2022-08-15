@@ -3283,10 +3283,12 @@ for(数据类型 变量名 : 数组或集合)&#123;
 
 #### hashCode()
 
-1. &#96;&#96;&#96;java
+1. 
+   
+   &#96;&#96;&#96;java
    public native int hashCode();
    &#x2F;&#x2F;作用：根据对象来生成一个哈希值，此处的哈希值是一个int类型的整数。
-   &#x2F;&#x2F;底层：Objec类提供的hashCode()方法，则默认是根据对象的地址值来生成的哈希值。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   &#x2F;&#x2F;底层：Objec类提供的hashCode()方法，则默认是根据对象的地址值来生成的哈希值。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </code></pre>
 </li>
 <li><p>问题：实际开发中，根据对象的地址值来生成哈希值是没有任何意义的，因为每次创建出来的对象的地址值都不一样。开发中，我们更多的是想根据对象的成员变量来生成哈希值，则该需求如何实现呢？</p>
