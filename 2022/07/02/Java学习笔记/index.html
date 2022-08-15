@@ -1459,7 +1459,7 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
 </li>
 </ol>
 <hr>
-<h4 id="方法的重载（overload）重点"><a href="#方法的重载（overload）重点" class="headerlink" title="方法的重载（overload）重点"></a>方法的重载（overload）重点</h4><ol>
+<h4 id="方法的重载（overload）重点（多态）"><a href="#方法的重载（overload）重点（多态）" class="headerlink" title="方法的重载（overload）重点（多态）"></a>方法的重载（overload）重点（多态）</h4><ol>
 <li><p>方法重载的定义</p>
 <ul>
 <li><p>同一个类中，具有相同的方法名，但是参数个数不同或参数类型不同，这就构成了方法的重载！</p>
@@ -3246,51 +3246,46 @@ for(数据类型 变量名 : 数组或集合)&#123;
 <li>如果一个类没有显式地使用extends关键字，则这个类默认就是继承于java.Object类，也就是说Object类是所有java类的父类。也就意味着所有的java类都能使用Object类提供的方法。</li>
 </ul>
 <hr>
-<h4 id="Object类的方法"><a href="#Object类的方法" class="headerlink" title="Object类的方法"></a>Object类的方法</h4><ol>
-<li><pre><code class="java">public String toString()&#123;...&#125;
-//作用：把对象转化为字符串并返回。
-//注意：每个类都应该重写Object类的toString()方法，在重写的方法中返回该对象的所有成员变量。
-<pre class="line-numbers language-none"><code class="language-none">
-2. &#96;&#96;&#96;java
-   public boolean equals(Object obj)&#123;...&#125;
-   &#x2F;&#x2F;作用：判断this和obj这两个对象是否相等。相等则返回true，不相等则返回flse。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-- 回顾：关于比较运算符“==”的作用？
+<h4 id="Object类的方法"><a href="#Object类的方法" class="headerlink" title="Object类的方法"></a>Object类的方法</h4><p>1. </p>
+   <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">&#125;</span>
+<span class="token comment">//作用：把对象转化为字符串并返回。</span>
+<span class="token comment">//注意：每个类都应该重写Object类的toString()方法，在重写的方法中返回该对象的所有成员变量。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>&#96;&#96;&#96;java<br>public boolean equals(Object obj){…}<br>&#x2F;&#x2F;作用：判断this和obj这两个对象是否相等。相等则返回true，不相等则返回flse。<pre class="line-numbers language-none"><code class="language-none">
+- 回顾：关于比较运算符“&#x3D;&#x3D;”的作用？
 
   - 如果左右两边属于“基本数据类型”，则比较左右两边的“数据值”是否想等。
   - 如果左右两边属于“引用数据类型”，则比较左右两边的“地址值”是否相等。
 
 - 底层：分析Object类提供equals()方法的底层源码
 
-  - ```java
+  - &#96;&#96;&#96;java
     public boolean equals(Object obj)&#123;
-        return(this == obj)
-    &#125;
-    <pre class="line-numbers language-none"><code class="language-none">
-     - 强调：Object类提供的equals(Object obj)方法，则默认比较两个对象的“地址值”是否相等。
+    	return(this &#x3D;&#x3D; obj)
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-     - **问题：实际开发中，直接比较两个对象的地址值是否相等是没有任何意义的，因为每次创建出来的对象地址值都不一样，开发中我们比较两个对象是否相等，更多的是想比较两个对象的成员变量值是否相等，则该需求如何实现呢？**
-
-     - 解决：Object类提供的equals(Object obj)方法无法满足我们的需求，则我们就就可以重写Object类所提供给的equals(Object obj)方法，然后在重写的equals(Object obj)方法中根据成员变量值来判断两个对象是否相等。
-
-     - 实现：不建议手动去重写equals(Object obj)方法，而是**建议使用“alt + inset”快捷键来重写equals(Object obj)方法。**
-
-     - **注意：java提供的类，则默认重写了Object类中的equals(Object obj)方法；自定义的类，则需要我们自己去重写Object类中的equals(Object obj)方法。**
-
-   - **哈希算法（自行了解）**
-
----
-
-#### hashCode()
-
-1. 
-   
-   &#96;&#96;&#96;java
-   public native int hashCode();
-   &#x2F;&#x2F;作用：根据对象来生成一个哈希值，此处的哈希值是一个int类型的整数。
-   &#x2F;&#x2F;底层：Objec类提供的hashCode()方法，则默认是根据对象的地址值来生成的哈希值。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</code></pre>
+<ul>
+<li><p>强调：Object类提供的equals(Object obj)方法，则默认比较两个对象的“地址值”是否相等。</p>
 </li>
+<li><p><strong>问题：实际开发中，直接比较两个对象的地址值是否相等是没有任何意义的，因为每次创建出来的对象地址值都不一样，开发中我们比较两个对象是否相等，更多的是想比较两个对象的成员变量值是否相等，则该需求如何实现呢？</strong></p>
+</li>
+<li><p>解决：Object类提供的equals(Object obj)方法无法满足我们的需求，则我们就就可以重写Object类所提供给的equals(Object obj)方法，然后在重写的equals(Object obj)方法中根据成员变量值来判断两个对象是否相等。</p>
+</li>
+<li><p>实现：不建议手动去重写equals(Object obj)方法，而是<strong>建议使用“alt + inset”快捷键来重写equals(Object obj)方法。</strong></p>
+</li>
+<li><p><strong>注意：java提供的类，则默认重写了Object类中的equals(Object obj)方法；自定义的类，则需要我们自己去重写Object类中的equals(Object obj)方法。</strong></p>
+</li>
+<li><p><strong>哈希算法（自行了解）</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode()"></a>hashCode()</h4><p>1. </p>
+   <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//作用：根据对象来生成一个哈希值，此处的哈希值是一个int类型的整数。</span>
+<span class="token comment">//底层：Objec类提供的hashCode()方法，则默认是根据对象的地址值来生成的哈希值。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
 <li><p>问题：实际开发中，根据对象的地址值来生成哈希值是没有任何意义的，因为每次创建出来的对象的地址值都不一样。开发中，我们更多的是想根据对象的成员变量来生成哈希值，则该需求如何实现呢？</p>
 <ul>
 <li><p>解决：Object类提供的hashCode()方法无法满足我们的需求，则我们就可以重写Object类提供的hashCode()方法，并且在重写的hashCode()方法中，根据对象的成员变量值来生成哈希值即可。</p>
