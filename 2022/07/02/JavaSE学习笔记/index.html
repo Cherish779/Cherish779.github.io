@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java学习笔记, 小白不白">
-    <meta name="description" content="Java学习笔记
+    <meta name="keywords" content="JavaSE学习笔记, 小白不白">
+    <meta name="description" content="JavaSE学习笔记
 
 
 JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整体翻译，将源文件编译成字节码文件。
@@ -14,8 +14,7 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
 缺点：需要等待；
 
 翻译型：逐行翻译，将字节码文件转换成对应平台的机器语言。
-
-优">
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -27,7 +26,7 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java学习笔记 | 小白不白</title>
+    <title>JavaSE学习笔记 | 小白不白</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -319,12 +318,12 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java学习笔记</h1>
+                    <h1 class="description center-align post-title">JavaSE学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -440,8 +439,8 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">Java学习笔记</span>
+                            <a href="/tags/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">JavaSE学习笔记</span>
                             </a>
                         
                     </div>
@@ -495,7 +494,7 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <center><h1>Java学习笔记</h1></center>
+                <center><h1>JavaSE学习笔记</h1></center>
 
 <hr>
 <h2 id="JavaSE基础【2022-7-2】"><a href="#JavaSE基础【2022-7-2】" class="headerlink" title="JavaSE基础【2022.7.2】"></a>JavaSE基础【2022.7.2】</h2><h3 id="DAY01"><a href="#DAY01" class="headerlink" title="DAY01"></a>DAY01</h3><h4 id="编译型和解释型的概述？"><a href="#编译型和解释型的概述？" class="headerlink" title="编译型和解释型的概述？"></a>编译型和解释型的概述？</h4><p><strong>编译型</strong>：整体翻译，将源文件编译成字节码文件。</p>
@@ -3250,41 +3249,45 @@ for(数据类型 变量名 : 数组或集合)&#123;
    <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">&#125;</span>
 <span class="token comment">//作用：把对象转化为字符串并返回。</span>
 <span class="token comment">//注意：每个类都应该重写Object类的toString()方法，在重写的方法中返回该对象的所有成员变量。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li>&#96;&#96;&#96;java<br>public boolean equals(Object obj){…}<br>&#x2F;&#x2F;作用：判断this和obj这两个对象是否相等。相等则返回true，不相等则返回flse。<pre class="line-numbers language-none"><code class="language-none">
-- 回顾：关于比较运算符“&#x3D;&#x3D;”的作用？
-
-  - 如果左右两边属于“基本数据类型”，则比较左右两边的“数据值”是否想等。
-  - 如果左右两边属于“引用数据类型”，则比较左右两边的“地址值”是否相等。
-
-- 底层：分析Object类提供equals()方法的底层源码
-
-  - &#96;&#96;&#96;java
-    public boolean equals(Object obj)&#123;
-    	return(this &#x3D;&#x3D; obj)
-    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2. </p>
+   <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">&#125;</span>
+<span class="token comment">//作用：判断this和obj这两个对象是否相等。相等则返回true，不相等则返回flse。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
-<li><p>强调：Object类提供的equals(Object obj)方法，则默认比较两个对象的“地址值”是否相等。</p>
-</li>
-<li><p><strong>问题：实际开发中，直接比较两个对象的地址值是否相等是没有任何意义的，因为每次创建出来的对象地址值都不一样，开发中我们比较两个对象是否相等，更多的是想比较两个对象的成员变量值是否相等，则该需求如何实现呢？</strong></p>
-</li>
-<li><p>解决：Object类提供的equals(Object obj)方法无法满足我们的需求，则我们就就可以重写Object类所提供给的equals(Object obj)方法，然后在重写的equals(Object obj)方法中根据成员变量值来判断两个对象是否相等。</p>
-</li>
-<li><p>实现：不建议手动去重写equals(Object obj)方法，而是<strong>建议使用“alt + inset”快捷键来重写equals(Object obj)方法。</strong></p>
-</li>
-<li><p><strong>注意：java提供的类，则默认重写了Object类中的equals(Object obj)方法；自定义的类，则需要我们自己去重写Object类中的equals(Object obj)方法。</strong></p>
-</li>
-<li><p><strong>哈希算法（自行了解）</strong></p>
-</li>
+<li><p>回顾：关于比较运算符“&#x3D;&#x3D;”的作用？</p>
+<ul>
+<li>如果左右两边属于“基本数据类型”，则比较左右两边的“数据值”是否想等。</li>
+<li>如果左右两边属于“引用数据类型”，则比较左右两边的“地址值”是否相等。</li>
 </ul>
 </li>
-</ol>
-<hr>
-<h4 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode()"></a>hashCode()</h4><p>1. </p>
-   <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">//作用：根据对象来生成一个哈希值，此处的哈希值是一个int类型的整数。</span>
-<span class="token comment">//底层：Objec类提供的hashCode()方法，则默认是根据对象的地址值来生成的哈希值。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<li><p>底层：分析Object类提供equals()方法的底层源码</p>
+<ul>
+<li>&#96;&#96;&#96;java<br>public boolean equals(Object obj){<br>return(this &#x3D;&#x3D; obj)<br>}<pre class="line-numbers language-none"><code class="language-none">
+     - 强调：Object类提供的equals(Object obj)方法，则默认比较两个对象的“地址值”是否相等。
+
+     - **问题：实际开发中，直接比较两个对象的地址值是否相等是没有任何意义的，因为每次创建出来的对象地址值都不一样，开发中我们比较两个对象是否相等，更多的是想比较两个对象的成员变量值是否相等，则该需求如何实现呢？**
+
+     - 解决：Object类提供的equals(Object obj)方法无法满足我们的需求，则我们就就可以重写Object类所提供给的equals(Object obj)方法，然后在重写的equals(Object obj)方法中根据成员变量值来判断两个对象是否相等。
+
+     - 实现：不建议手动去重写equals(Object obj)方法，而是**建议使用“alt + inset”快捷键来重写equals(Object obj)方法。**
+
+     - **注意：java提供的类，则默认重写了Object类中的equals(Object obj)方法；自定义的类，则需要我们自己去重写Object类中的equals(Object obj)方法。**
+   
+   - **哈希算法（自行了解）**
+
+---
+
+#### hashCode()
+
+1. 
+   
+   &#96;&#96;&#96;java
+   public native int hashCode();
+   &#x2F;&#x2F;作用：根据对象来生成一个哈希值，此处的哈希值是一个int类型的整数。
+   &#x2F;&#x2F;底层：Objec类提供的hashCode()方法，则默认是根据对象的地址值来生成的哈希值。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
 <ol start="2">
 <li><p>问题：实际开发中，根据对象的地址值来生成哈希值是没有任何意义的，因为每次创建出来的对象的地址值都不一样。开发中，我们更多的是想根据对象的成员变量来生成哈希值，则该需求如何实现呢？</p>
 <ul>
@@ -16556,7 +16559,7 @@ list<span class="token punctuation">.</span><span class="token function">add</sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Cherish779.github.io/2022/07/02/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://Cherish779.github.io/2022/07/02/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+                    <a href="http://Cherish779.github.io/2022/07/02/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://Cherish779.github.io/2022/07/02/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -16594,8 +16597,8 @@ list<span class="token punctuation">.</span><span class="token function">add</sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">Java学习笔记</span>
+                                <a href="/tags/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">JavaSE学习笔记</span>
                                 </a>
                             
                         </div>
@@ -16774,13 +16777,13 @@ list<span class="token punctuation">.</span><span class="token function">add</sp
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2022/07/02/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <a href="/2022/07/02/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Java学习笔记">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="JavaSE学习笔记">
                         
-                        <span class="card-title">Java学习笔记</span>
+                        <span class="card-title">JavaSE学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -16805,8 +16808,8 @@ list<span class="token punctuation">.</span><span class="token function">add</sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">Java学习笔记</span>
+                    <a href="/tags/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">JavaSE学习笔记</span>
                     </a>
                     
                 </div>
