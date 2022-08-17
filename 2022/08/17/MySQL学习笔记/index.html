@@ -895,21 +895,21 @@ select round(1236.5315,-1) as result from emp;  #保留到十位  --&gt; 1240
 <p>eg：100以内的随机数</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select round(rand()*100,0) as result from emp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/images/MySQL_images100%E4%BB%A5%E5%86%85%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0.png"></p>
+<p><img src="/images/MySQL_images/100%E4%BB%A5%E5%86%85%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0.png"></p>
 </li>
 <li><p><strong>ifnull 可以将 null 转换成一个具体值：</strong></p>
 <p>ifnull 是空处理函数。专门处理空的。</p>
 <p><strong>在所有数据库当中，只要有 NULL 参与的数学运算，最终结果就是NULL。</strong></p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select ename,sal + comm as salcomm from emp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/images/isnull01.png"></p>
+<p><img src="/images/MySQL_images/isnull01.png"></p>
 <p><strong>注意：NULL只要参与运算，最终结果一定是NULL。为了避免这个现象，需要使用 ifnull 函数。</strong></p>
 <p><strong>ifnull 函数用法：ifnull(数据, 被当作那个值)</strong></p>
 <p>如果 “数据” 为 NULL 的时候，把这个数据结构当作那个值。</p>
 <p>补助为NULL的时候，将补助当作0：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select ename,(sal + ifnull(comm,0)) as salcomm from emp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/images/isnull02.png"></p>
+<p><img src="/images/MySQL_images/isnull02.png"></p>
 </li>
 </ul>
 </li>
@@ -919,7 +919,7 @@ select 1000 as num from emp;  # 1000也是被当作一个字面量 &#x2F; 字面
 
 select abc num from emp; # 报错：因为会把abc当作一个字段的名字，去emp表中找abc字段<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/images/select%E5%90%8E%E7%9B%B4%E6%8E%A5%E8%B7%9F%E5%AD%97%E9%9D%A2%E9%87%8F%E6%88%96%E5%AD%97%E9%9D%A2%E5%80%BC.png"></p>
+<p><img src="/images/MySQL_images/select%E5%90%8E%E7%9B%B4%E6%8E%A5%E8%B7%9F%E5%AD%97%E9%9D%A2%E9%87%8F%E6%88%96%E5%AD%97%E9%9D%A2%E5%80%BC.png"></p>
 <p><strong>结论：select后面可以跟某个表的字段名（可以等同看做变量名），也可以跟着字面量 &#x2F; 字面值（数据）。</strong></p>
 </li>
 </ol>
@@ -967,7 +967,7 @@ select abc num from emp; # 报错：因为会把abc当作一个字段的名字�
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select count(*) from emp;  
 select count(comm) from emp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/images/count01.png"></p>
+<p><img src="/images/MySQL_images/count01.png"></p>
 <p><strong>count(具体字段)<strong>：表示</strong>统计该字段下所有不为NULL的元素的总数。</strong></p>
 <p><strong>count(*)<strong>：</strong>统计表当中的总行数。</strong>（只要有一行数据 count 则 ++ ），因为每一行记录不可能都为NULL，一行数据中有一列不为NULL，则这行数据就是有效的。</p>
 </li>
