@@ -4123,42 +4123,39 @@ for(数据类型 变量名 : 数组或集合)&#123;
 </ul>
 </li>
 <li><p>定义语法</p>
+<p>- </p>
+  <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">class</span> 外部类<span class="token punctuation">&#123;</span>
+	<span class="token comment">//静态内部类</span>
+	<span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> <span class="token keyword">static</span> <span class="token keyword">class</span> 内部类<span class="token punctuation">&#123;</span>
+		<span class="token comment">//书写静态内部类的代码</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>注意事项</p>
 <ul>
-<li><pre><code class="java">[修饰符] class 外部类&#123;
-    //静态内部类
-    [修饰符] static class 内部类&#123;
-        //书写静态内部类的代码
-    &#125;
-&#125;
-<pre class="line-numbers language-none"><code class="language-none">
-3. 注意事项
-
-   - a)定义静态内部类的时候，我们可以使用private、protected、public、final和abstract来修饰，并且还**必须使用static来修饰**
-
-   - b)在静态内部类中，我们不但能定义成员变量、成员方法、构造方法和构造代码块，并且还**能定义静态变量、静态方法和静态代码块。**
-
-   - c)**想要操作静态内部类，则直接通过外部类名来操作即可**，因为静态内部类是依附于外部类的，此处联想“静态变量”来理解即可。
-
-     **在外部类的成员位置，我们可以直接操作当前类中的静态内部类；在外部类的静态位置，我们可以直接操作当前类中的静态内部类。**
-
-   - d)**在静态内部类中，我们可以直接操作外部类的静态变量和静态方法，但是不能直接操作外部类的成员变量和成员方法。**
-
-     静态内部类是依附于外部类的，也就是**只要外部类加载完毕，则就能操作当前类中静态内部类。**
-
-   - e)想要操作静态内部类中的静态变量和静态方法，则我们还可以通过以下方式来直接操作：
-
-     1. **操作静态变量**：外部类.静态内部类.静态变量名；
-     2. **操作静态方法**：外部类.静态内部类.静态方法名(实参列表);
-
-4. **静态内部类的实例化方式？**
-
-   - **情况一：在外部类的内部，我们实例化静态内部类对象（掌握）**
-
-     --&gt; 语法：
-
-     &#96;&#96;&#96;java
-     内部类 对象 &#x3D; new 内部类(实现列表);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</code></pre>
+<li><p>a)定义静态内部类的时候，我们可以使用private、protected、public、final和abstract来修饰，并且还<strong>必须使用static来修饰</strong></p>
+</li>
+<li><p>b)在静态内部类中，我们不但能定义成员变量、成员方法、构造方法和构造代码块，并且还<strong>能定义静态变量、静态方法和静态代码块。</strong></p>
+</li>
+<li><p>c)<strong>想要操作静态内部类，则直接通过外部类名来操作即可</strong>，因为静态内部类是依附于外部类的，此处联想“静态变量”来理解即可。</p>
+<p><strong>在外部类的成员位置，我们可以直接操作当前类中的静态内部类；在外部类的静态位置，我们可以直接操作当前类中的静态内部类。</strong></p>
+</li>
+<li><p>d)<strong>在静态内部类中，我们可以直接操作外部类的静态变量和静态方法，但是不能直接操作外部类的成员变量和成员方法。</strong></p>
+<p>静态内部类是依附于外部类的，也就是<strong>只要外部类加载完毕，则就能操作当前类中静态内部类。</strong></p>
+</li>
+<li><p>e)想要操作静态内部类中的静态变量和静态方法，则我们还可以通过以下方式来直接操作：</p>
+<ol>
+<li><strong>操作静态变量</strong>：外部类.静态内部类.静态变量名；</li>
+<li><strong>操作静态方法</strong>：外部类.静态内部类.静态方法名(实参列表);</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>静态内部类的实例化方式？</strong></p>
+<ul>
+<li><p><strong>情况一：在外部类的内部，我们实例化静态内部类对象（掌握）</strong></p>
+<p>–&gt; 语法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">内部类 对象 <span class="token operator">=</span> <span class="token keyword">new</span> 内部类<span class="token punctuation">(</span>实现列表<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>情况二：在外部类的外部，我们实例化静态内部类对象（了解）</p>
 <p>–&gt; 语法：</p>

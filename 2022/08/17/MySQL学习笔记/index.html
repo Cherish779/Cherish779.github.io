@@ -977,6 +977,8 @@ select ename, sal from emp where sal &gt; min(sal); # 错误
 
 # 表面上看着没问题，其实是错误的
 ERROR 1111 (HY000): Invalid use of group function<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>因为分组函数在使用的时候必须先分组之后才能使用。</strong></p>
 </li>
 <li><p>所有的分组函数可以组合起来一起用。</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select sum(sal),min(sal),max(sal),avg(sal),count(*) from emp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
