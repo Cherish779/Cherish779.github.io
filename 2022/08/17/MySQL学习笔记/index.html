@@ -461,14 +461,14 @@ MySQL[8.17]DAY01数据库概述
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    6.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    24 分
                 </div>
                 
 
@@ -882,6 +882,12 @@ select * from emp where substr(ename,1,1) &#x3D; &#39;A&#39;;  # 第二种方式
 </li>
 <li><p><strong>case…when…then…when…then…else…end</strong></p>
 </li>
+<li><p><strong>md5(str):</strong> <strong>为字符串算出一个MD5 128比特校验和，改值以32位十六进制数字的二进制字符串形式返回</strong></p>
+<p><strong>不可逆，对同一明文，加密字符串相同。可以采用加密两次的方式将用户在客户端输入的密码在数据库中找到对应的密文。</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select md5(123456) from dual;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+</li>
 <li><p><strong>round 四舍五入：</strong></p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select round(1236.5315,0) as result from emp;  #保留到整数位
 select round(1236.5315,1) as result from emp;  #保留到1个小数
@@ -1003,6 +1009,217 @@ ERROR 1111 (HY000): Invalid use of group function<span aria-hidden="true" class=
 </li>
 </ul>
 </li>
+<li><p><strong>这个没有分组，为啥sum()函数可以用呢？</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select sum(sal) from emp;
+# 这个没有分组，为啥sum()函数可以用呢？
+# 因为select在group by 之后执行。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>找出每个工作岗位的工资和</strong></p>
+<ul>
+<li><p>实现思路：按照工作岗位分组，然后对工资求和。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select job,sum(sal) from emp group by job;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>以上这个语句的执行顺序</strong></p>
+<ol>
+<li>先从emp表中查询数据；</li>
+<li>根据job字段进行分组；</li>
+<li>然后对每一组的数据进行sum(sal)。</li>
+</ol>
+</li>
+<li><p>判断：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select ename, job, sum(sal) from emp group by job;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>以上语句在Mysql中可以执行，但是毫无意义。</p>
+<p>以上语句在oracle中执行报错，因为oracle的语法比mysql的语法严格。(mysql语法相对松散一些)</p>
+</li>
+<li><p><strong>重点结论：</strong></p>
+<p><strong>在一条select语句中，如果有group by语句，select后面只能跟：参加分组的字段，以及分组函数。其他的一律不能跟。</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>eg：找出”每个部门，不同工作岗位”的最高薪资？</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select deptno,job max(sal) from emp group by deptno,job;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>使用having可以对分完组之后的数据进一步过滤。having不能单独使用，having不能代替where，having必须和group by 联合使用。</p>
+<p>eg1：找出每个部门组稿薪资，要求显示最高薪资大于3000的</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select  deptno, ename, max(sal) from emp group by deptno having max(sal) &gt; 3000;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>思考：以上的sql语句执行效率是不是低？</p>
+<ul>
+<li><p>比较低，实际上可以先将大于3000的都找出来，然后再分组。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select deptno, max(sal) from emp where sal &gt; 3000 group by deptno;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>优化策略：where 和 having ，优先选择 where，where实在完成不了的，再选择having。</strong></p>
+</li>
+</ul>
+</li>
+<li><p>where没办法的？</p>
+<ul>
+<li><p>找出每个部门平均薪资，要求显示平均薪资高于2500的。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select deptno, avg(sal) from emp group by deptno having avg(sal) &gt; 2500; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>这里无法使用where来进行age(sal)的条件过滤，只能用having</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="单表查询总结"><a href="#单表查询总结" class="headerlink" title="单表查询总结"></a>单表查询总结</h3><p><strong>整体执行顺序：from &gt;&gt; where &gt;&gt; group by … having &gt;&gt; 聚合函数(分组函数) &gt;&gt; select &gt;&gt; order by</strong></p>
+<ol>
+<li><p><strong>from</strong>：先确定从哪个表中取数据，所以最先执行from tab。存在多表连接，from tab1，tab2。可以对表加别名，方便后面的引用。</p>
+</li>
+<li><p><strong>where语句</strong>：是对条件加以限定，如果没有需要限定的，那就写成where 1&#x3D;1，表示总为true，无附加条件。</p>
+</li>
+<li><p><strong>分组语句</strong>，比如按照员工姓名分组，要就行分组的字段，必须出现在select中，否则就会报错。having是和group by配合使用的，用来作条件限定。</p>
+</li>
+<li><p>常用的<strong>聚合函数</strong>有max，min， count，sum，聚合函数的执行在group by之后，having之前。如果在where中写聚合函数，就会出错</p>
+</li>
+<li><p>选出要<strong>查找</strong>的字段，如果全选可以select *。</p>
+</li>
+<li><p><strong>排序语句</strong>，默认为升序排列。如果要降序排列，就写成order by [XX] desc。order by语句在最后执行，只有select选出要查找的字段，才能进行排序。</p>
+</li>
+<li><p><strong>从某张表中查询数据 –&gt; 先经过where条件筛选出有价值的数据 –&gt; 对这些有价值的数据进行分组 – &gt; 分组之后可以使用having继续筛选 –&gt; select查询出来 –&gt; 最后排序输出。</strong></p>
+</li>
+<li><p><strong>综合案例：</strong></p>
+<ul>
+<li><p>找出每个岗位的平均薪资，要求显示平均薪资大于1500的，除manager岗位之外，要求按照平均薪资降序排序。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select deptno, avg(sal) from emp where job &lt;&gt; &#39;manager&#39; group by deptno having avg(sal) &gt; 1500 order by avg(sal) desc;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="DAY02"><a href="#DAY02" class="headerlink" title="DAY02"></a>DAY02</h2><h3 id="把查询结果去除重复记录"><a href="#把查询结果去除重复记录" class="headerlink" title="把查询结果去除重复记录"></a>把查询结果去除重复记录</h3><p><strong>注意：原表数据不会被修改，只是查询结果去重。</strong></p>
+<ol>
+<li><p>去重需要使用一个关键字：<strong>distinct</strong>【<strong>只能出现在所有字段的最前方</strong>】</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select distinct job form emp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>distinct出现在job,deptnmo两个字段之前，表示两个字段联合起来去重。</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select distinct job,deptno from emp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><strong>统计一下工作岗位的数量</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select count(distinct job) from empl;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这里的distinct可以用，去除重复值的统计</p>
+</li>
+</ol>
+<hr>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><ol>
+<li><p><strong>什么是连接查询？</strong></p>
+<ul>
+<li>从一张表中单独查询，称为单表查询。</li>
+<li>emp表和dept表联合起来查询数据，从emp表中取员工名字，从dept表中取部门名字。这种跨表查询，多张表联合起来查询数据，被称为连接查询。</li>
+</ul>
+</li>
+<li><p><strong>连接查询的分类</strong></p>
+<ul>
+<li><p><strong>根据语法的年代分类：</strong></p>
+<ul>
+<li>SQL92：1992年的时候出现的语法；</li>
+<li>SQL99：1999年的时候出现的语法；</li>
+</ul>
+</li>
+<li><p><strong>根据表连接的方式分类：</strong></p>
+<ul>
+<li><p><strong>内连接：</strong></p>
+<p>​    等值连接：</p>
+<p>​    非等值连接：</p>
+<p>​    自连接：</p>
+</li>
+<li><p><strong>外连接：</strong></p>
+<p>​    左外连接（左连接）：</p>
+<p>​    右外连接（右连接）：</p>
+</li>
+<li><p><strong>全连接：</strong>取出两张表的交集以及两张表剩下的记录条数。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>当两张表进行连接查询，没有任何条件限制的时候，【最终查询结果条数，是两张表条数的乘积】，这种现象被称为：笛卡尔积现象。（笛卡尔发现的，这是一个数学现象。）</strong></p>
+</li>
+<li><p><strong>怎么避免笛卡尔积现象？</strong></p>
+<ul>
+<li><p>连接时加条件，满足这个条件的记录被筛选出来。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># 查询每个员工所在部门名称，显示员工名和部门名
+# 表起别名。很重要，效率问题。
+select e.ename,d.dname from emp e, dept d where e.deptno &#x3D; d.deptno; # SQL92的语法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>思考：最终查询的结果条数是14条，，但是匹配的过程中，匹配的次数减少了吗？</strong></p>
+<p>​        <strong>–&gt; 没有，还是两张表条数的乘积，只不过进行了四选一。次数没有减少。</strong></p>
+</li>
+<li><p><strong>注意：通过笛卡尔积现象得出，表的连接此参数越多效率越低，尽量避免表的连接次数。</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="内连接之等值连接"><a href="#内连接之等值连接" class="headerlink" title="内连接之等值连接"></a>内连接之等值连接</h3><p><strong>案例：查询每个员工所在部门名称，显示员工名和部门名。</strong></p>
+<p><strong>SQL92语法：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select e.name,d.dname from emp e, dept d where e.deptno &#x3D; d.deptno;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>sql92的缺点：<strong>结构不清晰，表的连接条件，和后期进一步筛选的条件，都放到了where后面。</strong></p>
+<p><strong>SQL99语法：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select e.name,d.dname from emp e join dept d on e.deptno &#x3D; d.deptno; # 条件是一个等量，所以是一个等值连接<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>sql99优点：<strong>表连接的条件是独立的，连接之后，如果还需要进一步筛选，再往后继续添加where。</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># sql99语法
+select
+	...
+	from
+		a
+	[inner]	join  # 带着inner 可读性好，一眼看出来是内连接
+			b
+			on
+				a和b的连接条件
+				where
+					筛选条件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h3 id="内连接之非等值连接"><a href="#内连接之非等值连接" class="headerlink" title="内连接之非等值连接"></a>内连接之非等值连接</h3><p><strong>案例：找出每个员工的薪资等级，要求显示员工名、薪资、薪资等级？</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select e.ename, d.dname from emp e join salgrade s on e.sal between s.losal and s.hisal;
+# 条件不是一个等量关系，称为非等值连接<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<hr>
+<h3 id="内连接之自连接"><a href="#内连接之自连接" class="headerlink" title="内连接之自连接"></a>内连接之自连接</h3><p><strong>案例：查询员工的上级领导，要求显示员工名和对应的领导名？</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select a.ename, b.ename from emp a join emp b on a.empno &#x3D; b.empno; # 员工的领导编号 &#x3D; 领导的员工编号。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>13条记录，没有KING。【内连接】</p>
+<p><strong>以上就是内连接中的：自连接，技巧：一张表看作两张表。</strong></p>
+<p><strong>内连接：（A和B连接，AB两张表没有主次关系，平等的。）</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select a.ename, b.ename from emp a join emp b on a.empno &#x3D; b.empno;
+# 内连接的特点：完全能够匹配上这个条件的数据查询出来。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<hr>
+<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3><ol>
+<li><p><strong>外连接（右外连接）：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># outer 是可以省略的，带着可读性强
+select a.ename, b.ename from emp a right join emp b on a.empno &#x3D; b.empno;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><strong>right 代表什么：表示将 join 关键字右边的这张表看成主表，主要是为了将这张表的数据全部查询出来，捎带着关联查询左边的表。</strong></li>
+<li><strong>在外连接当中，两张表连接，产生了主次关系。</strong></li>
+</ul>
+</li>
+<li><p><strong>外连接（左外连接）：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select a.ename, b.ename from emp a left join emp b on a.empno &#x3D; b.empno;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><strong>带有right的是右外连接，又叫做右连接。</strong></li>
+<li><strong>带有left的是左外连接，又叫做左连接。</strong></li>
+<li><strong>任何一个右连接都有左连接的写法。</strong></li>
+<li><strong>任何一个左连接都有右连接的写法。</strong></li>
+</ul>
+</li>
+<li><p>思考：外连接的查询结果条数一定是 &gt;&#x3D; 内连接的查询结果条数？</p>
+<ul>
+<li>正确。</li>
+</ul>
+</li>
+<li><p>案例：查询每个员工的上级领导，要求显示所有员工的名字和领导名？</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select a.ename, b.dname from emp a left join emp b on a.mgr &#x3D; b.empno;
+# 左边的是员工表，员工表中KING的领导是Null,使用左连接就不会与内连接一样忽略KING，此时输出14条数据。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ol>
 </h1>
                 
@@ -1475,7 +1692,7 @@ ERROR 1111 (HY000): Invalid use of group function<span aria-hidden="true" class=
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">120k</span>
+                        class="white-color">122.3k</span>
             
             
             
