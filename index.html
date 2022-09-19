@@ -791,13 +791,14 @@ QQ，360，idea，浏览器等都是C&#x2F;S架构
                                 JDBC学习笔记
 
 
-DAY01JDBC是什么？
+JDBC【8.21】JDBC是什么？
 Java DataBase Connectivity（Java语言连接数据库）
+也就是JDBC是java提供的操作数据库的接口（规范）。
+
 
 
 JDBC的本质是什么？
-JDBC是SUN公司制定的一套接口（interface）
-java.sql.*; 
+JDBC是S
                             
                         </div>
                         <div class="publish-info">
@@ -829,7 +830,7 @@ java.sql.*;
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2022/08/18/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                    <a href="/2022/08/18/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%AE%8C%E7%BE%8E%E7%89%88/">
                         <div class="card-image">
                             
                             
@@ -842,13 +843,62 @@ java.sql.*;
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                MySQL学习笔记
+                                MySQL数据库数据库：存储数据的仓库
+之前我们可以使用数组、集合、IO存储数据。其中数组和集合的数据在内存中，IO可以将数据持久化存储。
+我们在实际开发中很多业务是需要将数据持久化的，此时使用IO将数据存储成一个普通的文件行不行？
+可以，
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-18
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                小白不白
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">MySQL学习笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2022/08/18/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%80%81%E6%9D%9C%E7%89%88/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MySQL学习笔记">
+                            
+                            <span class="card-title">MySQL学习笔记</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                MySQL学习笔记老杜版
+
 
 
 MySQL[8.18]DAY01数据库概述
 什么是数据库？什么是数据库管理系统？什么是SQL？他们之间的关系是什么？
 
-**数据库(DB)**：按照一定格式存储数据的一些文件的组合。存储数据的仓库，实际上就是一堆文件
+**数据库(DB)**：按照一定格式存储数据的一些文件的组合。存储数据的仓库，实际上就是
                             
                         </div>
                         <div class="publish-info">
@@ -1071,51 +1121,34 @@ JavaSE基础【2022.7.2】DAY01编译型和解释型的概述？编译型：整�
             </div>
               <!-- 隐藏某个文章 -->
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/03/18/%E7%AE%80%E4%BB%8B/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="First">
-                            
-                            <span class="card-title">First</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                简介这是我的第一篇博客
-
-public class HelloWorld&#123;
-	public static void main(String[] args)&#123;
-		System.out.println("Hello Wor
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-18
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                小白不白
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-              <!-- 隐藏某个文章 -->
-            
         </div>
     </article>
 
 </main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 
 
@@ -1136,7 +1169,7 @@ public class HelloWorld&#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">154.9k</span>
+                        class="white-color">175.2k</span>
             
             
             
